@@ -1,0 +1,208 @@
+\documentclass[titlepage, 12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\counterwithin{figure}{section}
+\usepackage[style=apa]{biblatex}
+\usepackage{datetime}
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+\usepackage{enumitem}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{paralist}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{pgf-pie}
+\usepackage{tocloft}
+
+\addbibresource{wkrpt.bib}
+
+\setlength\parskip{8pt}
+\setlength\parindent{0pt}
+
+\let\oldsection\section
+% Section headings should be capitalized
+\renewcommand\section[1]{\oldsection{\MakeUppercase{#1}}}
+% CECA wants sections to be numbered like x.0
+\renewcommand\thesection{\arabic{section}.0}
+\renewcommand\thesubsection{\arabic{section}.\arabic{subsection}}
+% Now our section numbers are too wide and this is necessary
+\renewcommand\cftsecnumwidth{3em}
+\renewcommand\cftsubsecnumwidth{3em}
+\renewcommand\cftsubsubsecnumwidth{3.5em}
+% And likewise for figures
+\renewcommand\thefigure{\arabic{section}.\arabic{figure}}
+% Fill spaces in TOC with dots
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+\renewcommand\cftsubsecleader{\cftdotfill{\cftdotsep}}
+\renewcommand\cftsubsubsecleader{\cftdotfill{\cftdotsep}}
+% Do not bolden section names in TOC
+\renewcommand\cftsecfont{\normalfont}
+\renewcommand\cftsecpagefont{\normalfont}
+% Don't make font large in sections
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\subsubsection}{\normalsize\bfseries}
+% Don't insert huge vspace after titles
+\titlespacing{\section}{0pt}{-\parskip}{-\parskip}
+\titlespacing{\subsection}{0pt}{-\parskip}{-\parskip}
+\titlespacing{\subsubsection}{0pt}{-\parskip}{-\parskip}
+\begin{document}
+
+\newcommand\student{Firstname Lastname}
+\newcommand\watid{12345678}
+\newcommand\level{1B}
+\newcommand\program{Computer Science}
+\newcommand\degree{BCS}
+\newcommand\reportnum{first}    % which report out of four required is this?
+\newcommand\address{200 University Ave W\newline
+                    Waterloo, ON\newline
+                    N2L 3G1}
+\newcommand\reporttitle{Title}
+\newcommand\company{Company Inc}
+\newcommand\supervisor{Firstname Lastname}
+\newcommand\supervisortitle{Software Engineer II, Team}
+\newcommand\department{Department}
+\newcommand\officeshortaddress{City, State, Country}
+\newcommand\officeaddress{Street address\\ City, State \\ Zip code}
+
+\newcommand\reportsummary{
+    Second paragraph of the Letter of Submittal goes here.
+}
+
+%%%%%%%
+% TITLE
+%%%%%%%
+\begin{titlepage}
+\begin{center}
+    \textbf{UNIVERSITY OF WATERLOO \\ Faculty of Mathematics}
+\end{center}
+\vfill
+\begin{center}
+    \textbf\reporttitle
+\end{center}
+\vfill
+\begin{center}
+    {\company \\ \department \\ \officeshortaddress}
+\end{center}
+\vfill\vfill  % Spacing here is roughly double on sample page
+\begin{center}
+    \student \\
+    \watid \\
+    \program \\
+    \monthyeardate\today
+\end{center}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%
+% LETTER OF SUBMITTAL
+%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{roman}
+\thispagestyle{empty} % Do not number
+\address
+
+\today
+
+\supervisor \\
+\supervisortitle \\
+\officeaddress
+
+Dear \supervisor,
+
+I have prepared the enclosed report, ``\reporttitle{},''
+as my \level{} work report for \department{} at \company{}.
+This report, the \reportnum{} of four work reports that the
+Co-operative Education Program requires that I successfully complete as part
+of my \degree{} Co-op degree requirements, has not received academic credit.
+
+\reportsummary{}
+
+The Faculty of Mathematics requests that you evaluate this report for command
+of topic and technical content/analysis. Following your assessment, the report,
+together with your evaluation, will be submitted to the Math Undergrad Office
+for evaluation on campus by qualified work report markers. The combined
+marks determine whether the report will receive credit and whether it will
+be considered for an award.
+
+I would like to thank you for your assistance in preparing this report.
+
+Sincerely,
+
+\includegraphics{signature}
+
+\student
+\vfill
+Encl.
+%%%%%%%%%%%%%%%%%%%
+% TABLE OF CONTENTS
+%%%%%%%%%%%%%%%%%%%
+\newpage
+\renewcommand\contentsname{
+    \begin{center}
+        \normalsize \textbf{TABLE OF CONTENTS}
+    \end{center}
+}
+\renewcommand\listfigurename{
+    \begin{center}
+        \normalsize \textbf{LIST OF FIGURES}
+    \end{center}
+}
+\doublespacing
+\tableofcontents
+\listoffigures
+%%%%%%%%%%%%%%%%%%%
+% EXECUTIVE SUMMARY
+%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{secnumdepth}{0}  % Add to TOC, but do not number
+\section{Executive Summary}
+
+\lipsum
+
+%%%%%%%%%%%%%%
+% INTRODUCTION
+%%%%%%%%%%%%%%
+\newpage
+\setcounter{secnumdepth}{3}
+\pagenumbering{arabic}
+\section{Introduction}
+
+\lipsum
+
+%%%%%%%%%%
+% ANALYSIS
+%%%%%%%%%%
+\section{Analysis}
+
+\subsection{First subsection}
+
+\lipsum
+
+\subsection{Second subsection}
+
+\lipsum
+
+%%%%%%%%%%%%%
+% CONCLUSIONS
+%%%%%%%%%%%%%
+\section{Conclusions}
+
+\lipsum
+
+%%%%%%%%%%%%%%%%%
+% RECOMMENDATIONS
+%%%%%%%%%%%%%%%%%
+\section{Recommendations}
+
+\lipsum
+
+%%%%%%%%%%%%
+% REFERENCES
+%%%%%%%%%%%%
+\newpage
+\setcounter{secnumdepth}{0}  % Add to TOC, but do not number
+\section{References}
+
+\printbibliography[heading=none]
+
+\end{document}
