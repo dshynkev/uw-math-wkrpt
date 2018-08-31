@@ -2,7 +2,7 @@
 
 NAME := wkrpt
 
-wkrpt.pdf: wkrpt.tex wkrpt.bib signature.png
+$(NAME).pdf: $(NAME).tex $(NAME).bib signature.png
 	# In the worst case, we need all four steps:
 	# - biber wants pdflatex to run first (even though it will fail)
 	# - biber has to run next to process bibliography
