@@ -5,12 +5,13 @@ I share it in hope others may find it useful.
 
 ### How to use this
 
+First, create the report:
+
 1. Write the report using `wkrpt.tex` as a template.
 2. List your sources in `wkrpt.bib` using the BibTeX format.
 3. Create a `signature.png` file with a scan of your signature.
-4. Run `pdflatex wkrpt.tex && biber wkrpt && pdflatex wkrpt.tex`.
 
-When this is done, you will find the output in `wkrpt.pdf`.
+Next, run `make` to produce `wkrpt.pdf` and `make clean` to remove intermediates.
 
 ### Correctness guarantees
 
