@@ -1,4 +1,4 @@
-# UW Math Faculty work term report
+# UW Math Faculty work term report template
 
 This is my template for University of Waterloo **Math Faculty** work term reports.
 I share it in hope others may find it useful.
